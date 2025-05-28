@@ -23,4 +23,5 @@ app/build/
 
 # Capturas generadas desde Android Studio
 captures/
+release/
 

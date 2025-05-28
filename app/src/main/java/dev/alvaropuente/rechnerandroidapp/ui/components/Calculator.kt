@@ -1,5 +1,6 @@
 package dev.alvaropuente.rechnerandroidapp.ui.components
 
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -40,29 +41,35 @@ fun Calculator(modifier: Modifier = Modifier, viewModel: CalculatorViewModel) {
             modifier = Modifier.fillMaxSize(),
             horizontalAlignment = Alignment.End
         ) {
-            Text(
-                text = equationText.value?: "",
-                style = TextStyle(
-                    fontSize = 30.sp,
-                    textAlign = TextAlign.End
-                ),
-                maxLines = 5,
-                overflow = TextOverflow.Ellipsis,
-            )
+            // Top Content
+            Column(
+                modifier = Modifier.weight(1f),
+                horizontalAlignment = Alignment.End,
+                verticalArrangement = Arrangement.Top
+            ) {
+                Text(
+                    text = equationText.value ?: "",
+                    style = TextStyle(
+                        fontSize = 30.sp,
+                        textAlign = TextAlign.End
+                    ),
+                    maxLines = 1,
+                    overflow = TextOverflow.Ellipsis,
+                )
 
-            Spacer(modifier = Modifier.height(100.dp))
+                Spacer(modifier = Modifier.height(140.dp))
 
-            Text(
-                text = resultText.value?: "",
-                style = TextStyle(
-                    fontSize = 60.sp,
-                    textAlign = TextAlign.End
-                ),
-                maxLines = 2,
-            )
+                Text(
+                    text = resultText.value ?: "",
+                    style = TextStyle(
+                        fontSize = 60.sp,
+                        textAlign = TextAlign.End
+                    ),
+                    maxLines = 2,
+                )
+            }
 
-            Spacer(modifier = Modifier.height(50.dp))
-
+            // Bottom Content
             LazyVerticalGrid(
                 columns = GridCells.Fixed(4),
             ) {

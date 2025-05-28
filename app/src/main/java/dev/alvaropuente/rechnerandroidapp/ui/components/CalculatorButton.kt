@@ -1,6 +1,7 @@
 package dev.alvaropuente.rechnerandroidapp.ui.components
 
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
@@ -19,7 +20,9 @@ import androidx.compose.ui.unit.sp
 fun CalculatorButton(btn: String, onClick: () -> Unit = {}) {
     val hapticFeedback = LocalHapticFeedback.current
     Box(
-        modifier = Modifier.padding(8.dp)
+        modifier = Modifier
+            .padding(8.dp)
+            .aspectRatio(1f)
     ) {
         FloatingActionButton(
             modifier = Modifier.size(80.dp),
@@ -41,7 +44,7 @@ fun CalculatorButton(btn: String, onClick: () -> Unit = {}) {
 
 fun getColor(btn: String): Color {
     return when (btn) {
-        "AC", "C","%", "/", "*", "-", "+" -> Color(0xFF9E9E9E)
+        "AC", "C", "%", "/", "*", "-", "+" -> Color(0xFF9E9E9E)
         "=" -> Color(0xFFFF8A80)
         else -> Color(0xFFF2F2F2)
     }
