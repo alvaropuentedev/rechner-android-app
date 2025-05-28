@@ -22,11 +22,11 @@ import androidx.compose.ui.unit.sp
 import dev.alvaropuente.rechnerandroidapp.viewmodel.CalculatorViewModel
 
 fun buttonList(): List<String> = listOf(
-    "AC", "(", ")", "/",
+    "AC", "%", "C", "/",
     "7", "8", "9", "*",
     "4", "5", "6", "-",
     "1", "2", "3", "+",
-    "C", "0", ".", "=",
+    "00", "0", ".", "=",
 )
 
 @Composable

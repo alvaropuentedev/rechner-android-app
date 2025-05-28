@@ -4,7 +4,7 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import dev.alvaropuente.rechnerandroidapp.domain.calculatorUseCase
+import dev.alvaropuente.rechnerandroidapp.domain.useCase.calculatorUseCase
 
 class CalculatorViewModel : ViewModel() {
 
@@ -35,12 +35,13 @@ class CalculatorViewModel : ViewModel() {
                 _equationText.value = _resultText.value
                 return
             }
-
+            // Append Button to Equation
             _equationText.value = it + btn
 
             //Calculate Result
             try {
-            _resultText.value = calculatorUseCase(_equationText.value.toString(), _resultText.value.toString())
+                _resultText.value =
+                    calculatorUseCase(_equationText.value.toString(), _resultText.value.toString())
             } catch (_: Exception) {
                 _resultText.value = "Error"
             }
