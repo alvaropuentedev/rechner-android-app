@@ -1,16 +1,26 @@
-*.iml
-.gradle
-.idea
-/local.properties
-/.idea/caches
-/.idea/libraries
-/.idea/modules.xml
-/.idea/workspace.xml
-/.idea/navEditor.xml
-/.idea/assetWizardSettings.xml
+# Archivos del sistema
 .DS_Store
-/build
-/captures
-.externalNativeBuild
-.cxx
+
+# Archivos de configuración de Android Studio
+.idea/
+*.iml
 local.properties
+
+# Archivos específicos de IntelliJ que no deberían compartirse
+.idea/caches/
+.idea/libraries/
+.idea/modules.xml
+.idea/workspace.xml
+.idea/navEditor.xml
+.idea/assetWizardSettings.xml
+
+# Carpetas de build generadas automáticamente
+/build/
+app/build/
+.gradle/
+.cxx/
+.externalNativeBuild/
+
+# Capturas generadas desde Android Studio
+captures/
+
