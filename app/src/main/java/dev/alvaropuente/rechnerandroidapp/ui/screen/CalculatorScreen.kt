@@ -1,4 +1,4 @@
-package dev.alvaropuente.rechnerandroidapp.ui.components
+package dev.alvaropuente.rechnerandroidapp.ui.screen
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -20,6 +20,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import dev.alvaropuente.rechnerandroidapp.ui.components.CalculatorButton
 import dev.alvaropuente.rechnerandroidapp.viewmodel.CalculatorViewModel
 
 fun buttonList(): List<String> = listOf(
@@ -31,7 +32,7 @@ fun buttonList(): List<String> = listOf(
 )
 
 @Composable
-fun Calculator(modifier: Modifier = Modifier, viewModel: CalculatorViewModel) {
+fun CalculatorScreen(modifier: Modifier = Modifier, viewModel: CalculatorViewModel) {
 
     val equationText = viewModel.equationText.observeAsState()
     val resultText = viewModel.resultText.observeAsState()

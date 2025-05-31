@@ -10,7 +10,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.ui.Modifier
 import androidx.lifecycle.ViewModelProvider
-import dev.alvaropuente.rechnerandroidapp.ui.components.Calculator
+import dev.alvaropuente.rechnerandroidapp.ui.screen.CalculatorScreen
 import dev.alvaropuente.rechnerandroidapp.ui.theme.RechnerAndroidAppTheme
 import dev.alvaropuente.rechnerandroidapp.viewmodel.CalculatorViewModel
 
@@ -24,7 +24,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             RechnerAndroidAppTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Calculator(modifier = Modifier.padding(innerPadding), calculatorViewModel)
+                    CalculatorScreen(modifier = Modifier.padding(innerPadding), calculatorViewModel)
                 }
             }
         }

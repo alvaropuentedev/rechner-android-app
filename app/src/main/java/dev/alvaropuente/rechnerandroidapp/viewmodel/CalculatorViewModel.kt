@@ -41,7 +41,7 @@ class CalculatorViewModel : ViewModel() {
             //Calculate Result
             try {
                 _resultText.value =
-                    calculatorUseCase(_equationText.value.toString(), _resultText.value.toString())
+                    calculatorUseCase(_equationText.value ?: "", _resultText.value?: "")
             } catch (_: Exception) {
                 _resultText.value = "Error"
             }

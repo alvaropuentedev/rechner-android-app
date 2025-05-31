@@ -36,7 +36,8 @@ fun CalculatorButton(btn: String, onClick: () -> Unit = {}) {
             Text(
                 text = btn,
                 fontSize = 22.sp,
-                fontWeight = FontWeight.SemiBold
+                fontWeight = FontWeight.SemiBold,
+                color = Color.Black
             )
         }
     }
