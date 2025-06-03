@@ -1,6 +1,5 @@
 package dev.alvaropuente.rechnerandroidapp
 
-import android.content.pm.ActivityInfo
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -17,8 +16,6 @@ import dev.alvaropuente.rechnerandroidapp.viewmodel.CalculatorViewModel
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        // Set the orientation to portrait
-        requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
         val calculatorViewModel = ViewModelProvider(this).get(CalculatorViewModel::class.java)
         enableEdgeToEdge()
         setContent {

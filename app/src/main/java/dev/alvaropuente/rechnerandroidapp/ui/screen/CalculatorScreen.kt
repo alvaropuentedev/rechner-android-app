@@ -4,9 +4,11 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
@@ -21,6 +23,8 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import dev.alvaropuente.rechnerandroidapp.ui.components.CalculatorButton
+import dev.alvaropuente.rechnerandroidapp.ui.utils.isLandscape
+import dev.alvaropuente.rechnerandroidapp.ui.utils.isTablet
 import dev.alvaropuente.rechnerandroidapp.viewmodel.CalculatorViewModel
 
 fun buttonList(): List<String> = listOf(
@@ -33,6 +37,7 @@ fun buttonList(): List<String> = listOf(
 
 @Composable
 fun CalculatorScreen(modifier: Modifier = Modifier, viewModel: CalculatorViewModel) {
+    val isTablet = isTablet()
 
     val equationText = viewModel.equationText.observeAsState()
     val resultText = viewModel.resultText.observeAsState()
@@ -48,6 +53,9 @@ fun CalculatorScreen(modifier: Modifier = Modifier, viewModel: CalculatorViewMod
                 horizontalAlignment = Alignment.End,
                 verticalArrangement = Arrangement.Top
             ) {
+                if (isTablet) {
+                    Spacer(modifier = Modifier.height(190.dp))
+                }
                 Text(
                     text = equationText.value ?: "",
                     style = TextStyle(
@@ -57,8 +65,11 @@ fun CalculatorScreen(modifier: Modifier = Modifier, viewModel: CalculatorViewMod
                     maxLines = 1,
                     overflow = TextOverflow.Ellipsis,
                 )
-
-                Spacer(modifier = Modifier.height(140.dp))
+                if (isTablet) {
+                    Spacer(modifier = Modifier.height(240.dp))
+                } else {
+                    Spacer(modifier = Modifier.height(140.dp))
+                }
 
                 Text(
                     text = resultText.value ?: "",
@@ -69,13 +80,65 @@ fun CalculatorScreen(modifier: Modifier = Modifier, viewModel: CalculatorViewMod
                     maxLines = 2,
                 )
             }
-
+            val isLandscape = isLandscape()
             // Bottom Content
             LazyVerticalGrid(
                 columns = GridCells.Fixed(4),
             ) {
-                items(buttonList()) {
-                    CalculatorButton(btn = it, onClick = { viewModel.onButtonClick(it) })
+                if (isTablet) {
+                    if (isLandscape) {
+                        items(buttonList()) {
+                            Box(
+                                modifier = Modifier
+                                    .height(100.dp)
+                                    .aspectRatio(3f)
+                                    .padding(15.dp),
+                                contentAlignment = Alignment.Center
+                            ) {
+                                CalculatorButton(
+                                    btn = it,
+                                    onClick = { viewModel.onButtonClick(it) })
+                            }
+                        }
+                    } else {
+                        items(buttonList()) {
+                            Box(
+                                modifier = Modifier
+                                    .height(100.dp)
+                                    .aspectRatio(2f)
+                                    .padding(8.dp),
+                                contentAlignment = Alignment.Center
+                            ) {
+                                CalculatorButton(
+                                    btn = it,
+                                    onClick = { viewModel.onButtonClick(it) })
+                            }
+                        }
+                    }
+                } else {
+                    if (isLandscape) {
+                        items(buttonList()) {
+                            CalculatorButton(
+                                btn = it,
+                                onClick = { viewModel.onButtonClick(it) },
+                                modifier = Modifier
+                                    .aspectRatio(4f)
+                                    .height(5.dp)
+                                    .width(1.dp)
+                                    .padding(8.dp)
+                            )
+                        }
+                    } else {
+                        items(buttonList()) {
+                            CalculatorButton(
+                                btn = it,
+                                onClick = { viewModel.onButtonClick(it) },
+                                modifier = Modifier
+                                    .aspectRatio(1f)
+                                    .padding(8.dp)
+                            )
+                        }
+                    }
                 }
             }
         }
