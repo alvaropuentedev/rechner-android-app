@@ -38,23 +38,29 @@ fun buttonList(): List<String> = listOf(
 @Composable
 fun CalculatorScreen(modifier: Modifier = Modifier, viewModel: CalculatorViewModel) {
     val isTablet = isTablet()
+    val isLandscape = isLandscape()
 
     val equationText = viewModel.equationText.observeAsState()
     val resultText = viewModel.resultText.observeAsState()
 
-    Box(modifier = modifier.padding(10.dp)) {
+    Box(modifier = modifier.padding(10.dp).fillMaxSize()) {
         Column(
             modifier = Modifier.fillMaxSize(),
-            horizontalAlignment = Alignment.End
+            horizontalAlignment = Alignment.End,
+            verticalArrangement = Arrangement.SpaceBetween
         ) {
             // Top Content
             Column(
-                modifier = Modifier.weight(1f),
+                modifier = Modifier.weight(0.4f),
                 horizontalAlignment = Alignment.End,
                 verticalArrangement = Arrangement.Top
             ) {
                 if (isTablet) {
-                    Spacer(modifier = Modifier.height(190.dp))
+                    if (isLandscape) {
+                        Spacer(modifier = Modifier.height(20.dp))
+                    } else {
+                        Spacer(modifier = Modifier.height(240.dp))
+                    }
                 }
                 Text(
                     text = equationText.value ?: "",
@@ -66,11 +72,14 @@ fun CalculatorScreen(modifier: Modifier = Modifier, viewModel: CalculatorViewMod
                     overflow = TextOverflow.Ellipsis,
                 )
                 if (isTablet) {
-                    Spacer(modifier = Modifier.height(240.dp))
+                    if (isLandscape) {
+                        Spacer(modifier = Modifier.height(40.dp))
+                    } else {
+                        Spacer(modifier = Modifier.height(140.dp))
+                    }
                 } else {
                     Spacer(modifier = Modifier.height(140.dp))
                 }
-
                 Text(
                     text = resultText.value ?: "",
                     style = TextStyle(
@@ -80,12 +89,11 @@ fun CalculatorScreen(modifier: Modifier = Modifier, viewModel: CalculatorViewMod
                     maxLines = 2,
                 )
             }
-            val isLandscape = isLandscape()
             // Bottom Content
             LazyVerticalGrid(
                 columns = GridCells.Fixed(4),
             ) {
-                if (isTablet) {
+                if (isTablet ) {
                     if (isLandscape) {
                         items(buttonList()) {
                             Box(
