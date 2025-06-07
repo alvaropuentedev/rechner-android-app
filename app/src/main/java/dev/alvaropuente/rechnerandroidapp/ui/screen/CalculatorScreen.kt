@@ -73,7 +73,7 @@ fun CalculatorScreen(modifier: Modifier = Modifier, viewModel: CalculatorViewMod
                 )
                 if (isTablet) {
                     if (isLandscape) {
-                        Spacer(modifier = Modifier.height(40.dp))
+                        Spacer(modifier = Modifier.height(30.dp))
                     } else {
                         Spacer(modifier = Modifier.height(140.dp))
                     }
@@ -99,8 +99,8 @@ fun CalculatorScreen(modifier: Modifier = Modifier, viewModel: CalculatorViewMod
                             Box(
                                 modifier = Modifier
                                     .height(100.dp)
-                                    .aspectRatio(3f)
-                                    .padding(15.dp),
+                                    .aspectRatio(2.8f)
+                                    .padding(12.dp),
                                 contentAlignment = Alignment.Center
                             ) {
                                 CalculatorButton(
